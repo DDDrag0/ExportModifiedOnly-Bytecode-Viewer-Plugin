@@ -33,7 +33,7 @@ The plugin operates on a **two-pass principle** without modifying BCV's core cod
 1. **Download the JAR**  
    Grab the latest `ExportModifiedOnly.jar` from the [Releases](https://github.com/DDDrag0/ExportModifiedOnly-Bytecode-Viewer-Plugin/releases) page.
 
-2. **In BCV's go to Plugin → Open Plugin... → It should open a file explorer, select the** `ExportModifiedOnly.jar`.
+2. **In BCV go to Plugin → Open Plugin... → It should open a file explorer, select the** `ExportModifiedOnly.jar`.
 
 3. **Click Run so that it is active.** 
 
