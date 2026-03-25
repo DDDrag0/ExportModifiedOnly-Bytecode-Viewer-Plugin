@@ -1,5 +1,24 @@
 # Export Modified Only - Bytecode Viewer Plugin
 
+**Export Modified Only** is a plugin for [Bytecode Viewer](https://github.com/Konloch/bytecode-viewer) 2.12 that exports only the classes you have modified during a reverse engineering session, preserving the full package structure.
+
+### What it does
+- Creates a ZIP archive containing **only the classes that have changed** (no untouched files).
+- Maintains the original directory hierarchy (e.g., `a/b/c/MyClass.class`).
+- Automatically places the ZIP in the same folder as your last manual save (`Ctrl+S` or `File → Save As…`).
+- The filename includes a timestamp for uniqueness: `modified_classes_YYYYMMDD-HHmmss.zip`.
+
+### Usage
+- **First run**: open your JAR/APK, run the plugin – it captures the initial state and shows a console with instructions.
+- **Make your changes** to the desired classes.
+- **Save the workspace** (`Ctrl+S` or `File → Save As…`).
+- **Second run**: execute the plugin again – a ZIP with the modified classes is created in the same folder as your last save.
+
+The plugin console displays:
+- The number of monitored classes.
+- The list of modified classes.
+- The final path of the generated ZIP.
+
 ## Overview
 **Export Modified Only** is a plugin for [Bytecode Viewer (BCV)](https://github.com/Konloch/bytecode-viewer) 2.12 that exports only the classes modified during a reverse engineering session, preserving the full package structure (e.g., `a/b/c/d/ModifiedClass.class`). Instead of saving the entire archive (JAR/APK), this plugin creates a clean ZIP file containing exclusively the changed classes – ideal for producing minimal patches or testing modifications.
 
