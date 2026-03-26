@@ -1,62 +1,20 @@
+> ⚠️ **The standalone plugin is deprecated and removed**
+> 
+> Due to technical limitations, the standalone JAR is no longer supported.  
+> **Please use the pre‑integrated BCV build** available at:  
+> [https://github.com/DDDrag0/bytecode-viewer/releases](https://github.com/DDDrag0/bytecode-viewer/releases)
+> 
+> This repository is kept as a reference for the source code.
+---
 # Export Modified Only - Bytecode Viewer Plugin
 
-**Export Modified Only** is a plugin for [Bytecode Viewer](https://github.com/Konloch/bytecode-viewer) 2.12 that exports only the classes you have modified during a reverse engineering session, preserving the full package structure.
+**Export Modified Only** is a plugin for [Bytecode Viewer (BCV)](https://github.com/Konloch/bytecode-viewer) 2.12 that exports only the classes modified during a reverse engineering session, preserving the full package structure (e.g., `a/b/c/d/ModifiedClass.class`). Instead of saving the entire archive (JAR/APK), this plugin creates a clean ZIP file containing exclusively the changed classes – ideal for producing minimal patches or testing modifications.
 
 ### What it does
 - Creates a ZIP archive containing **only the classes that have changed** (no untouched files).
 - Maintains the original directory hierarchy (e.g., `a/b/c/MyClass.class`).
 - Automatically places the ZIP in the same folder as your last manual save (`Ctrl+S` or `File → Save As…`).
 - The filename includes a timestamp for uniqueness: `modified_classes_YYYYMMDD-HHmmss.zip`.
-
-### Usage
-- **First run**: open your JAR/APK, run the plugin – it captures the initial state and shows a console with instructions.
-- **Make your changes** to the desired classes.
-- **Save the workspace** (`Ctrl+S` or `File → Save As…`).
-- **Second run**: execute the plugin again – a ZIP with the modified classes is created in the same folder as your last save.
-
-The plugin console displays:
-- The number of monitored classes.
-- The list of modified classes.
-- The final path of the generated ZIP.
-
-## Overview
-**Export Modified Only** is a plugin for [Bytecode Viewer (BCV)](https://github.com/Konloch/bytecode-viewer) 2.12 that exports only the classes modified during a reverse engineering session, preserving the full package structure (e.g., `a/b/c/d/ModifiedClass.class`). Instead of saving the entire archive (JAR/APK), this plugin creates a clean ZIP file containing exclusively the changed classes – ideal for producing minimal patches or testing modifications.
-
-The plugin operates on a **two-pass principle** without modifying BCV's core code, using only its public API.
-
----
-
-## Features
-- **Two-pass operation**  
-  - First run: captures the initial bytecode of all loaded classes.  
-  - Second run: compares current bytecode with the saved state and exports only modified (or newly added) classes.
-- **Preserves package structure** – classes are placed in the correct directories inside the ZIP.
-- **Automatic output directory** – the ZIP is saved in the same folder as your last manual save (`Ctrl+S` or `File → Save As…`), with a timestamped filename (`modified_classes_YYYYMMDD-HHmmss.zip`).
-- **Clear console feedback** – the plugin console shows the number of monitored classes, the list of modified classes, and the final ZIP location.
-
----
-
-> ## ⚠️ **Important: Why a JAR is Recommended**  
-> BCV can run plugins either as scripts (`.java` files) or as compiled JARs.
-> Due to limitations of BCV’s internal script compiler (Janino), the plugin **must be used as a compiled JAR**. Running the `.java` file directly will cause compilation errors like:
-> ```
-> Assignment conversion not possible from type "java.lang.Object" to type "java.lang.String"
-> ```
-> Therefore, **using the compiled JAR is the only reliable way to execute this plugin**. The JAR is loaded directly by BCV's classloader, bypassing Janino completely.
-> The JAR provided in this release works out‑of‑the‑box.
-
----
-
-## Installation (Using the Pre‑compiled JAR – Recommended)
-
-1. **Download the JAR**  
-   Grab the latest `ExportModifiedOnly.jar` from the [Releases](https://github.com/DDDrag0/ExportModifiedOnly-Bytecode-Viewer-Plugin/releases) page.
-
-2. **In BCV go to Plugin → Open Plugin... → It should open a file explorer, select the** `ExportModifiedOnly.jar`.
-
-3. **Click Run so that it is active.** 
-
----
 
 ## Usage
 
@@ -79,11 +37,14 @@ The plugin operates on a **two-pass principle** without modifying BCV's core cod
 
 If no modifications are found, the console simply reports `No modified classes detected.`
 
+The plugin console displays:
+- The number of monitored classes.
+- The list of modified classes.
+- The final path of the generated ZIP.
+
 ---
 
 ## Integrating the Source into a BCV Development Environment
-
-If you intend to modify the plugin or include it as a built‑in plugin in your own BCV build, you can place the source file directly into the source tree.
 
 1. **Clone the BCV repository** and check out the desired version (e.g., `v2.12`):
    ```bash
